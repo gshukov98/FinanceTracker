@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Finance tracker</string>
+    <string name="register">REGISTER</string>
+    <string name="login">LOGIN</string>
+    <string name="confirm_password">Confirm Password....</string>
+    <string name="enter_password">Enter Password....</string>
+    <string name="enter_username">Enter Username....</string>
+    <string name="addButton">ADD</string>
+    <string name="type">type</string>
+    <string name="price">price</string>
+    <string name="timestamp">timestamp</string>
+    <string name="sum">SUM</string>
+    <string name="sumNumber">0.00</string>
+    <string name="addCost">Add Cost</string>
 </resources>

@@ -24,7 +24,7 @@ object UserDB {
         const val PASSWORD = "Password"
     }
 
-    fun getId(uri: Uri):Long{
+    fun getId(uri: Uri): Long {
         return ContentUris.parseId(uri)
     }
 

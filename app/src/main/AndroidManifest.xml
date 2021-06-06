@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinanceTracker">
+        <activity android:name=".AddCostActivity"></activity>
+        <activity android:name=".LoginActivity">
+
+        </activity>
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,6 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name=".database.AppProvider"
+            android:authorities="com.georgishukov.financetracker.provider"
+            android:exported="false" />
     </application>
 
 </manifest>
