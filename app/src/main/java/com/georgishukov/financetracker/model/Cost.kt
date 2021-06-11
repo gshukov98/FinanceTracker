@@ -13,7 +13,7 @@ import java.util.*
 
 @Parcelize
 @SuppressLint("ParcelCreator")
-data class Cost( var id: Int,
+data class Cost( var id: Long,
                  var type: String,
                  var description: String,
                  var price: Double,

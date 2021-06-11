@@ -8,7 +8,7 @@
     android:background="@color/light_blue_background">
 
     <EditText
-        android:id="@+id/descriptionEditText"
+        android:id="@+id/addDescriptionEditText"
         android:layout_width="271dp"
         android:layout_height="194dp"
         android:layout_marginTop="60dp"
@@ -83,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/addPriceEditText"
         android:layout_width="271dp"
         android:layout_height="41dp"
         android:layout_marginTop="12dp"
@@ -106,5 +106,5 @@
         android:text="@string/addButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/addDescriptionEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

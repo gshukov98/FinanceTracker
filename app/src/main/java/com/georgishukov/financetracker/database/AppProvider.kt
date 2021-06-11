@@ -27,7 +27,6 @@ const val USERS_ID = 101
 const val COSTS = 200
 const val COSTS_ID = 201
 
-const val RELATIONS = 300
 
 
 class AppProvider: ContentProvider() {
@@ -42,8 +41,6 @@ class AppProvider: ContentProvider() {
 
         matcher.addURI(CONTENT_AUTHORITY, CostDB.TABLE_NAME, COSTS)
         matcher.addURI(CONTENT_AUTHORITY, "${CostDB.TABLE_NAME}/#", COSTS_ID)
-
-        matcher.addURI(CONTENT_AUTHORITY, RelationsDB.TABLE_NAME, RELATIONS)
 
         return matcher
     }
@@ -79,8 +76,6 @@ class AppProvider: ContentProvider() {
                 queryBuilder.appendWhereEscapeString("$queryId")
             }
 
-            RELATIONS -> queryBuilder.tables = RelationsDB.TABLE_NAME
-
             else -> throw IllegalArgumentException("Unknown URI: $uri")
         }
 
@@ -102,8 +97,6 @@ class AppProvider: ContentProvider() {
 
             COSTS -> CostDB.CONTENT_TYPE
             COSTS_ID -> CostDB.CONTENT_ITEM_TYPE
-
-            RELATIONS -> RelationsDB.CONTENT_TYPE
 
             else -> throw IllegalArgumentException("Unknown URI: $uri")
         }
@@ -187,11 +180,6 @@ class AppProvider: ContentProvider() {
             }
 
 
-            RELATIONS -> {
-                val db = AppDatabase.getInstance(context).writableDatabase
-                count = db.delete(RelationsDB.TABLE_NAME, selection, selectionArgs)
-            }
-
             else -> throw IllegalArgumentException("Unknown URI: $uri")
         }
 
@@ -241,11 +229,6 @@ class AppProvider: ContentProvider() {
                     selectionCriteria += "AND ($selection)"
                 }
                 count = db.update(CostDB.TABLE_NAME, values, selectionCriteria, selectionArgs)
-            }
-
-            RELATIONS -> {
-                val db = AppDatabase.getInstance(context).writableDatabase
-                count = db.update(RelationsDB.TABLE_NAME, values, selection, selectionArgs)
             }
 
             else -> throw IllegalArgumentException("Unknown URI: $uri")

@@ -2,9 +2,11 @@ package com.georgishukov.financetracker
 
 import android.app.Activity
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.georgishukov.financetracker.database.AppDatabase
 import com.georgishukov.financetracker.database.UserDB
 import com.georgishukov.financetracker.databinding.ActivityRegisterBinding
 import com.georgishukov.financetracker.model.User
@@ -32,6 +34,8 @@ class RegisterActivity : AppCompatActivity() {
         val actionBar = supportActionBar
         actionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val db = AppDatabase(this)
+
         val bundle = intent.extras
         user = bundle?.getParcelable(ARG_PUT_USER)
 
@@ -49,16 +53,31 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.registerButton.setOnClickListener {
-            if (binding.registerUsernameEditText.text.toString().length > 5 && binding.registerPasswordEditText.text.toString().length > 5 && binding.registerPasswordEditText.text.toString().equals(binding.registerPasswordConfirmEditText.text.toString()))
-                saveUser()
-            else{
-                Toast.makeText(this,"Username and password should be more than 5 symbols length and password should be same",Toast.LENGTH_LONG).show()
+            if (binding.registerUsernameEditText.text.toString().length > 5 && binding.registerPasswordEditText.text.toString().length > 5 && binding.registerPasswordEditText.text.toString()
+                    .equals(binding.registerPasswordConfirmEditText.text.toString())
+            ) {
+                //saveUser()
+                val id = Random(1).nextLong(100000 - 1)
+                val newUser = User(
+                    id,
+                    binding.registerUsernameEditText.text.toString(),
+                    binding.registerPasswordEditText.text.toString()
+                )
+
+                db.addUser(newUser)
+                finish()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Username and password should be more than 5 symbols length and password should be same",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
 
     private fun userFromUI(): User {
-        val id = Random(100000).nextLong()
+        val id = Random(1).nextLong(100000 - 1)
         val newUser = User(
             id,
             binding.registerUsernameEditText.text.toString(),
@@ -73,7 +92,8 @@ class RegisterActivity : AppCompatActivity() {
         if (newUser != null) {
             putUser(newUser)
             setResult(Activity.RESULT_OK)
-            finish()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
         setResult(Activity.RESULT_CANCELED)

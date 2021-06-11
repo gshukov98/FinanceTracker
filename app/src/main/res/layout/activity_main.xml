@@ -92,7 +92,7 @@
         app:layout_constraintStart_toEndOf="@+id/td_price_heading" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/car_list"
+        android:id="@+id/costs_list_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
