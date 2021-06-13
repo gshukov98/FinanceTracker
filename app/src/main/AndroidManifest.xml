@@ -9,31 +9,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FinanceTracker">
-        <activity android:name=".AddCostActivity">
+        <activity android:name=".SplashActivity">
             android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"
-        </activity>
-        <activity android:name=".LoginActivity">
-            android:screenOrientation="portrait"
+            android:theme="@style/Theme.FinanceTracker.NoActionBar"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".AddCostActivity">
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity"
+        </activity>
+        <activity android:name=".LoginActivity">
+            android:screenOrientation="portrait"
+        </activity>
         <activity android:name=".RegisterActivity">
             android:screenOrientation="portrait"
         </activity>
         <activity android:name=".MainActivity">
             android:screenOrientation="portrait"
-            android:parentActivityName=".LoginActivity"
-        </activity>
+            android:parentActivityName=".LoginActivity"</activity>
 
         <provider
             android:name=".database.AppProvider"
             android:authorities="com.georgishukov.financetracker.provider"
             android:exported="false"
-            android:grantUriPermissions="true"/>
+            android:grantUriPermissions="true" />
     </application>
 
 </manifest>

@@ -4,11 +4,15 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.georgishukov.financetracker.model.Cost
 import com.georgishukov.financetracker.model.User
 import com.georgishukov.financetracker.utilities.SingletonHolder
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -97,6 +101,7 @@ public class AppDatabase (context : Context): SQLiteOpenHelper(context, DATABASE
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getCosts():List<Cost>{
         val costsList: ArrayList<Cost> = ArrayList<Cost>()
 
@@ -117,7 +122,8 @@ public class AppDatabase (context : Context): SQLiteOpenHelper(context, DATABASE
                 )
                 var date: Date = Date()
                 try {
-                    date = dateFormat.parse(s)
+                    /*date = dateFormat.parse(s)*/
+                    date = convertToDateViaSqlDate(LocalDate.parse(s, DateTimeFormatter.ISO_DATE))
                 } catch (e: ParseException) {
                     // TODO Auto-generated catch block
                     e.printStackTrace()
@@ -132,6 +138,11 @@ public class AppDatabase (context : Context): SQLiteOpenHelper(context, DATABASE
 
         return costsList
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun convertToDateViaSqlDate(dateToConvert: LocalDate?): Date {
+        return java.sql.Date.valueOf(dateToConvert.toString())
     }
 
     companion object : SingletonHolder<AppDatabase, Context>(::AppDatabase) //sync database

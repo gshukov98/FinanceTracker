@@ -175,7 +175,6 @@ class AddCostActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener 
 
     override fun onItemSelected(arg0: AdapterView<*>, arg1: View, position: Int, id: Long) {
         // use position to know the selected item
-        Toast.makeText(applicationContext, "position " + position, Toast.LENGTH_SHORT).show()
     }
 
     override fun onNothingSelected(arg0: AdapterView<*>) {
